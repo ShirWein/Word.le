@@ -41,17 +41,17 @@ const WordleInput: React.FC<Props> = ({
         }
     }
 
-    //* Handle submit event:
+    //* Handle submit event - check letter position: 
     const handleSubmit = (): void => {
         let word: string = currentGuess.join("") //* join the letters to make a word. 
         if (usableWords.includes(word) && !guesses.includes(word)) {
-            currentGuess.map((letter: string, i: number): void => {
+            currentGuess.map((key: string, i: number): void => {
                 let input: HTMLElement | null = document.getElementById(`${i}${index}`)
-                let letterElement: HTMLElement | null = document.getElementById(letter)
-                if (letter == solution[i]) {  //* if letter is in the right position.  
+                let letterElement: HTMLElement | null = document.getElementById(key)
+                if (key == solution[i]) {  //* if letter is in the right position.  
                     if(input) input.style.background = 'green'
                     if (letterElement) letterElement.style.background = 'green'    
-                } else if (solution.includes(letter)) {
+                } else if (solution.includes(key)) {
                     if(input) input.style.background = 'yellow'
                     if (letterElement) letterElement.style.background = 'yellow'
                 } else {
@@ -72,17 +72,16 @@ const WordleInput: React.FC<Props> = ({
             {/* //* Loop over the array of strings: */}
             {currentGuess.map(
                 (letter: string, i: number): JSX.Element => (
-                <input 
+                <input style={{boxShadow: '5px 5px 10px rgba(0,0,0,0.5)', margin: '1px'}} 
                     key={i} 
                     type='text' 
                     id={`${i}${index}`} //* combine i and index in order to cross column and row. 
                     value={currentGuess[i]} 
                     onChange={({target: {value}}: React.ChangeEvent<HTMLInputElement>): void => {
-                        //* update the state:// 
+                        //* update the state:
                         let newCurrentGuess: string[] = currentGuess; 
                         if (!value.match(/[a-z]/gi)) {
                             newCurrentGuess[i] = "";
-                            // alert(newCurrentGuess);
                             setCurrentGuess(newCurrentGuess);
                         } else {
                             newCurrentGuess[i] = value;

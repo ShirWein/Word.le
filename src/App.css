@@ -1,3 +1,24 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #E0F6EE
+}
+
+
+html, #root {
+  background-color: #E0F6EE
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
 .App {
   text-align: center;
   height: 100vh;
@@ -33,13 +54,14 @@ input[type="text"] {
 
 
 button {
-  width: 100px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   margin-left: 5px;
   border-radius: 10px;
   font-size: 30px;
-  color: white;
-  background-color: green;
+  color: black;
+  background-color: rgb(231, 206, 206);
+  cursor: pointer;
 }
 
 .keyboardBase {
@@ -49,7 +71,6 @@ button {
   left: 50%;
   bottom: 10%;
   transform: translate(-50%, -50%);
-  background-color: rgb(197, 197, 197);
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(30, 30px);
@@ -58,7 +79,7 @@ button {
   justify-content: center;
 }
 
-
+/* 
 .key {
   background-color: rgb(243, 243, 243);
   border: 2px solid black;
@@ -68,7 +89,7 @@ button {
   text-align: center;
   padding-top: 17px;
   text-transform: uppercase;
-}
+} */
 
 .key:hover {
 border: 1px solid #eeeeee;
