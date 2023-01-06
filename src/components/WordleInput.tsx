@@ -6,9 +6,16 @@ interface Props {
     index: number;
     setGuesses: (guesses: string[]) => void;
     guesses: string[];
+    usableWords: string[];
+    solution: string;
 }
 
-const WordleInput: React.FC<Props> = ({index, setGuesses, guesses}: Props): JSX.Element => {
+const WordleInput: React.FC<Props> = ({
+    index, 
+    setGuesses, 
+    guesses,
+    usableWords,
+    solution}: Props): JSX.Element => {
     //* using state to "store" letters in an array of strings. 
     //* Each string in the array of 5 represent a letter guess   
     const [currentGuess, setCurrentGuess] = useState<string[]>([...Array(5)]);
@@ -36,8 +43,30 @@ const WordleInput: React.FC<Props> = ({index, setGuesses, guesses}: Props): JSX.
 
     //* Handle submit event:
     const handleSubmit = (): void => {
+        let word: string = currentGuess.join("") //* join the letters to make a word. 
+        if (usableWords.includes(word) && !guesses.includes(word)) {
+            currentGuess.map((letter: string, i: number): void => {
+                let input: HTMLElement | null = document.getElementById(`${i}${index}`)
+                let letterElement: HTMLElement | null = document.getElementById(letter)
+                if (letter == solution[i]) {  //* if letter is in the right position.  
+                    if(input) input.style.background = 'green'
+                    if (letterElement) letterElement.style.background = 'green'    
+                } else if (solution.includes(letter)) {
+                    if(input) input.style.background = 'yellow'
+                    if (letterElement) letterElement.style.background = 'yellow'
+                } else {
+                    if (input) input.style.background = 'gray'
+                    if (letterElement) letterElement.style.background = 'gray'
+                }    
+                let newGuesses: string[] = [... guesses];
+                newGuesses[index] = word;
+                setGuesses(newGuesses);
+            })
+        } else {
+                alert('Not a word')}
 
-    }
+        }
+    
     return (
         <div>
             {/* //* Loop over the array of strings: */}
@@ -49,15 +78,22 @@ const WordleInput: React.FC<Props> = ({index, setGuesses, guesses}: Props): JSX.
                     id={`${i}${index}`} //* combine i and index in order to cross column and row. 
                     value={currentGuess[i]} 
                     onChange={({target: {value}}: React.ChangeEvent<HTMLInputElement>): void => {
-                        //* update the state://  
+                        //* update the state:// 
                         let newCurrentGuess: string[] = currentGuess; 
-                        newCurrentGuess[i] = value;
-                        // alert(newCurrentGuess);
-                        setCurrentGuess(newCurrentGuess); 
+                        if (!value.match(/[a-z]/gi)) {
+                            newCurrentGuess[i] = "";
+                            // alert(newCurrentGuess);
+                            setCurrentGuess(newCurrentGuess);
+                        } else {
+                            newCurrentGuess[i] = value;
+                            // alert(newCurrentGuess);
+                            setCurrentGuess(newCurrentGuess);
+                        }  
                     }}
                     onKeyUp={(e: React.KeyboardEvent)=> handleKeyUp(e, i)}
                     maxLength={1} 
-                    minLength={1} 
+                    minLength={1}
+                    pattern={'/^[a-zA-Z]*$/'}
                     required 
                     />
             ))}
