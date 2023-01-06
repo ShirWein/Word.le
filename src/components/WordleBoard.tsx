@@ -34,9 +34,9 @@ const WordleBoard: React.FC = () : JSX.Element => {
                 <WordleInput index={i} key={i}  setGuesses={setGuess} guesses={guesses} usableWords={usableWords} solution={solution}  />
             ))}
             <WordleKeyboard 
-                onClick={(letter) => {
-                    
-                }}
+                // onClick={(letter) => {
+
+                // }}
                 />
 
         </div>

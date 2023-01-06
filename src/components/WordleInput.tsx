@@ -45,13 +45,14 @@ const WordleInput: React.FC<Props> = ({
     const handleSubmit = (): void => {
         let word: string = currentGuess.join("") //* join the letters to make a word. 
         if (usableWords.includes(word) && !guesses.includes(word)) {
-            currentGuess.map((key: string, i: number): void => {
+            currentGuess.map((letter: string, i: number): void => {
                 let input: HTMLElement | null = document.getElementById(`${i}${index}`)
-                let letterElement: HTMLElement | null = document.getElementById(key)
-                if (key == solution[i]) {  //* if letter is in the right position.  
+                let letterElement: HTMLElement | null = document.getElementById(letter)
+                console.log('letter ele', letterElement);
+                if (letter == solution[i]) {  //* if letter is in the right position.  
                     if(input) input.style.background = 'green'
                     if (letterElement) letterElement.style.background = 'green'    
-                } else if (solution.includes(key)) {
+                } else if (solution.includes(letter)) {
                     if(input) input.style.background = 'yellow'
                     if (letterElement) letterElement.style.background = 'yellow'
                 } else {

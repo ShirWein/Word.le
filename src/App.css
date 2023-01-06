@@ -60,36 +60,36 @@ button {
   border-radius: 10px;
   font-size: 30px;
   color: black;
-  background-color: rgb(231, 206, 206);
+  background-color: rgb(228, 180, 180);
   cursor: pointer;
+  text-align: center;
 }
 
 .keyboardBase {
-  max-width: 1050px;
   position: absolute;
-  padding: 5px;
-  left: 50%;
-  bottom: 10%;
-  transform: translate(-50%, -50%);
+  left: 25%;
+  bottom: -11%;
   border-radius: 10px;
   display: grid;
-  grid-template-columns: repeat(30, 30px);
-  grid-template-rows: repeat(2, 60px);
+  grid-template-columns: repeat(20, 30px);
+  grid-template-rows: repeat(3, 60px);
   grid-gap: 5px;
   justify-content: center;
 }
 
-/* 
+
 .key {
-  background-color: rgb(243, 243, 243);
+  background-color: rgb(228, 180, 180);
   border: 2px solid black;
+  width: 60px;
+  height: 60px;
   border-radius: 5px;
   grid-column: span 2;
   font-size: 20px;
   text-align: center;
-  padding-top: 17px;
   text-transform: uppercase;
-} */
+  text-align: center;
+}
 
 .key:hover {
 border: 1px solid #eeeeee;
