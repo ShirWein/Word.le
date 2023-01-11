@@ -10,7 +10,7 @@ export function Navbar () {
     <nav className="navbar fixed-top" style={{backgroundColor: '#E0F6EE'}}>
         <div className="container-fluid d-flex justify-content-between">
           <ModalPop/>
-          <a className="navbar-brand fs-2" href="#"><strong>W🤓RDLE</strong></a>
+          <a className="navbar-brand fs-2" href="#"><strong>🆆🤓🆁 🅳 🅻 🅴</strong></a>
           <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
             <span className="navbar-toggler-icon"></span>
           </button>

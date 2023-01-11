@@ -1,4 +1,5 @@
-import React from "react";
+import React, {MouseEvent, useContext} from "react";
+// import { InputContext } from '../context/inputField';
 
 
 // export default function WordleKeyboard({onClick: onClickProp}: {onClick: (letter: string) => void;}) {
@@ -60,15 +61,33 @@ import React from "react";
 //         ['', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ''],
 //         ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Backspace'],   
 // ];
+// type keyBoardProps={
+//     onClickProp: Function,
+// };
 
-
-const WordleKeyboard: React.FC = ():JSX.Element => {
+function WordleKeyboard():JSX.Element {
     //* Array of letters:
     const alphabet: string[] = 'qwertyuiopasdfghjklzxcvbnm'.split('')
+
+    // const {currentGuess, setCurrentGuess} = useContext(InputContext);
+
+
+    const handleOnClick = (event: MouseEvent<HTMLButtonElement>, i: number): void | string => {
+        event.preventDefault();
+        const letter = event.currentTarget.textContent;
+        console.log(letter);
+        if (letter !== 'Enter') {
+            // props.onClickProp(letter);
+        }
+        // setCurrentGuess(letter)
+        
+    }
+
+
     return (
         <div className="keyboardBase">
             {alphabet.map((letter: string, i: number): JSX.Element => (
-                <button className="key" id={letter} key={i}>
+                <button className="key" id={letter} key={i} onClick={(event:React.MouseEvent<HTMLButtonElement>)=>handleOnClick(event,i)}>
                     {letter}
                 </button>
             ))}

@@ -20,20 +20,26 @@ export default function ModalPop() {
             keyboard={true}
         >
             <Modal.Header closeButton>
-            <Modal.Title>How to play?</Modal.Title>
+            <Modal.Title className='justify-content-center'>How to play?</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-            I will not close if you click outside me.
-            I will not close if you click outside me.
-            I will not close if you click outside me.
-            I will not close if you click outside me.
-            I will not close if you click outside me.
-            I will not close if you click outside me.
-            I will not close if you click outside me.
-            I will not close if you click outside me.
-            I will not close if you click outside me.
-            I will not close if you click outside me.
-            I will not close if you click outside me.
+            <Modal.Body className='text-center text-lg'>
+            Guess the word in 6 tries. 
+            After each guess, the color of the tiles will change to show how close your guess was to the word.
+            <br/>
+            <div className='img-green'>
+                <img src="green.png"/>
+            </div>
+            The letter W is in the word and in the correct spot.
+            <br/>
+            <div className='img-yellow'>
+                <img src="yellow.jpg"/>
+            </div>
+            The letter L is in the word but in the wrong spot.
+            <br/>
+            <div className='img-gray'>
+                <img src="gray.jpg"/>
+            </div>
+            The letter U is not in the word in any spot.
             </Modal.Body>
             <Modal.Footer className='justify-content-center'>
                 <b>©️ Shir Weinbrand | 2022-2023</b>
