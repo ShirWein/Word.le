@@ -5,8 +5,8 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom";
 // import { Welcome } from './pages/Welcome';
 // import { Game } from './pages/Game';
-// import 'bootstrap/dist/css/bootstrap.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 

@@ -134,7 +134,7 @@ button.play2 {
 .keyboardBase {
   position: absolute;
   left: 25%;
-  bottom: -11%;
+  bottom: -15%;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(20, 30px);
