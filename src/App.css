@@ -38,13 +38,13 @@ code {
   letter-spacing: .15em; /* Adjust as needed */
   animation: 
     typing 4.5s steps(30, end),
-    blink-caret .6s step-end infinite;
+    blink-caret .8s step-end infinite;
 }
 
 /* The typing effect */
 @keyframes typing {
   from { width: 0 }
-  to { width: 65% }
+  to { width: 50% }
 }
 
 /* The typewriter cursor effect */
@@ -67,15 +67,15 @@ code {
 
 .play2 {
   position: absolute;
-  left: 50%;
+  left: 42%;
   top: 55%;
   transform: translate(-50%, -50%);
   padding: 10px;
   border-radius: 4px;
+  border: 2px solid black;
   background-color: orange;
   box-shadow: 0px 0px 2px 2px rgb(0,0,0);
 }
-
 
 .App {
   text-align: center;
@@ -83,7 +83,7 @@ code {
   padding: 40px;
 }
 
-input[type="text"] {
+input[type="text"]:not(.form-control){
   width: 60px;
   height: 60px;
   border-radius: 5px;
@@ -131,6 +131,15 @@ button.play2 {
   height: 60px;
   margin-top: 8px;
 }
+
+
+/* input.form-control#exampleForm.ControlInput1{
+  width: 120px;
+  height: 20px;
+  border-radius: 5px;
+  font-size: 20px;
+  text-align: center;
+} */
 
 .keyboardBase {
   position: absolute;

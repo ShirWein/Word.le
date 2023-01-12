@@ -1,3 +1,5 @@
+import LogIn from "./LogIn";
+
 export function Welcome () {
     const text = "Welcome to Wordle game"
     return (
@@ -8,6 +10,7 @@ export function Welcome () {
             <br/>
             <br/>
             <button className="play2"><a className='play' href={'game'} >Start Play</a></button>
+            <LogIn/>
        </>
     )
 }   
