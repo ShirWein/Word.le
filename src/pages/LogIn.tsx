@@ -1,13 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 export default function LogIn() {
+  //* Modal Log In:
   const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    // handleSubmit();
+    // //@ts-ignore
+    // setUser({});
+    setUsername("");
+    setPassword("");
+    localStorage.clear();
+  };
   const handleShow = () => setShow(true);
+
+  //* Handle submit & local storage:
+  //* User Name state:
+  const [username, setUsername] = useState("");
+   //* User password state:
+  const [password, setPassword] = useState("");
+
+  //* Grab data from local storage:
+  useEffect(() => {
+    const data = window.localStorage.getItem('User_Details');
+    console.log('data', data);
+  }, [])
+
+  //* Store data in local storage:
+//   useEffect(()=> {
+//     window.localStorage.setItem('User_Details', JSON.stringify(
+//         {"user": username, 
+//         "password": password}))
+//   }, [username])
+  const [user, setUser] = useState()
+  const handleSubmit = (e: any): any => {
+    e.preventDefault();
+    // let status = false;
+    //   useEffect(()=> {
+    // window.localStorage.setItem('User_Details', JSON.stringify(
+    //     {"user": username, 
+    //     "password": password}))
+    // }, [username])
+    // // const user = { username, password };
+    // // window.localStorage.setItem('User_Details', JSON.stringify(user));
+    // // setUser(data);
+    // // console.log(data)
+    // //send the username and password to the server
+    // // const response = await axios.post(
+    // //   "http://blogservice.herokuapp.com/api/login",
+    // //   user);
+    // // set the state of the user
+    // // setUser(response.data)
+    // // store the user in localStorage
+    // // localStorage.setItem('user', response.data)
+    // // console.log(response.data)
+    // if (status){
+    //     location.href="/game.html";
+    //   }
+  };
+
+//   if (user) {
+//     return <div>{user.name} is loggged in</div>;
+//   }
 
   return (
     <>
@@ -34,12 +92,14 @@ export default function LogIn() {
           <Modal.Title>Log In</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="logInName" controlId="exampleForm.ControlInput1">
               <Form.Label>Your Name</Form.Label>
               <Form.Control
                 type="text"
+                value={username}
                 autoFocus
+                onChange={({ target }) => setUsername(target.value)}
               />
             </Form.Group>
             <Form.Group
@@ -47,9 +107,13 @@ export default function LogIn() {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Your Password</Form.Label>
-              <Form.Control type="password" />
+              <Form.Control type="password"
+              value={password}
+              onChange={({ target }) => setPassword(target.value)} 
+              />
             </Form.Group>
           </Form>
+          
         </Modal.Body>
         <Modal.Footer className='justify-content-center'>
           <Button style={{
@@ -62,14 +126,15 @@ export default function LogIn() {
             }} onClick={handleClose}>
             Close
           </Button>
-          <Button style={{
+          <Button style = {{
             width: "83px",
             height: "60px",
             marginTop: "8px",
             background: "orange",
             border: "1px solid black",
             color: "black",
-            }} onClick={handleClose}>
+            }} onClick={handleClose}
+            type = "submit">
             Log In
           </Button>
         </Modal.Footer>
