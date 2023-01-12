@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 //* This component creates the input squares:
 
@@ -21,9 +21,15 @@ const WordleInput: React.FC<Props> = ({
     const [currentGuess, setCurrentGuess] = useState<string[]>([...Array(5)]);
     
     //* Focus: 
+
+    
     const autoTab = (InputIndex: number, guessIndex: number): void => {
         document.getElementById(`${InputIndex}${guessIndex}`)?.focus();
     }
+    
+    useEffect(() => {
+        document.getElementById('00')?.focus();
+    }, []);
 
     //* Handle KeyUp event:
     const handleKeyUp = (e: React.KeyboardEvent, i: number): void => {
