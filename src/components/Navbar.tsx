@@ -8,9 +8,13 @@ export function Navbar () {
     <>
 
     <nav className="navbar fixed-top" style={{backgroundColor: '#E0F6EE'}}>
+          <span className="username" style={{marginLeft: "80px", top: "40%", position: "absolute", fontSize: "1rem"}}>
+            <strong>Hello userName</strong>
+          </span>
+        
         <div className="container-fluid d-flex justify-content-between">
           <ModalPop/>
-          <a className="navbar-brand fs-2" href="#"><strong>🆆🤓🆁 🅳 🅻 🅴</strong></a>
+          <a className="navbar-brand fs-2" style={{marginLeft: "22px"}} href="#"><strong>🆆🤓🆁 🅳 🅻 🅴</strong></a>
           <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
             <span className="navbar-toggler-icon"></span>
           </button>

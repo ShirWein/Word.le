@@ -87,11 +87,17 @@ input[type="text"]:not(.form-control){
   width: 60px;
   height: 60px;
   border-radius: 5px;
-  font-size: 30px;
+  font-size: 50px;
   text-align: center;
   text-transform: uppercase;
   transform: rotateX(5deg) rotateY(5deg);
   box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+  caret-color: transparent;
+}
+
+input[type=text]:focus :not(.form-control) {
+  outline: none;
+  border-color: 1px solid rgb(228, 180, 180, 0.5);
 }
 
 .keyLetter {

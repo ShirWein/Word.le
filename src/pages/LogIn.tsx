@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -9,13 +8,9 @@ export default function LogIn() {
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
-    // handleSubmit();
-    // //@ts-ignore
-    // setUser({});
-    setUsername("");
-    setPassword("");
-    localStorage.clear();
-  };
+    
+
+  }
   const handleShow = () => setShow(true);
 
   //* Handle submit & local storage:
@@ -133,9 +128,10 @@ export default function LogIn() {
             background: "orange",
             border: "1px solid black",
             color: "black",
-            }} onClick={handleClose}
+            }} 
+            onClick={handleClose}
             type = "submit">
-            Log In
+            <a style={{color: "black", textDecoration: "none"}} href={'game'} >Log In</a>
           </Button>
         </Modal.Footer>
       </Modal>
