@@ -2,6 +2,12 @@ import React from "react";
 import ModalPop from "./Modal";
 
 export function Navbar () {
+  //@ts-ignore
+  let userName: string | null = JSON.parse(localStorage.getItem('FormData')).name;
+  if (userName == "") {
+    userName = 'Guest'
+  }
+  console.log(userName);
 
   return (
 
@@ -9,8 +15,17 @@ export function Navbar () {
 
     <nav className="navbar fixed-top" style={{backgroundColor: '#E0F6EE'}}>
           <span className="username" style={{marginLeft: "80px", top: "40%", position: "absolute", fontSize: "1rem"}}>
-            <strong>Hello userName</strong>
+            <strong>Hello {userName}</strong>
           </span>
+          <a className="logout" 
+            style={{marginLeft: "22px"}} 
+            href="/"
+            onClick={()=> {
+              window.localStorage.clear();
+            }}
+          >
+            Log Out
+          </a>
         
         <div className="container-fluid d-flex justify-content-between">
           <ModalPop/>

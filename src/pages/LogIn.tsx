@@ -3,27 +3,56 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
+interface IFormInputValues {
+    name: string;
+    password: number | string;
+}
+
+function getFormValues() {
+    const storedValues = localStorage.getItem('FormData');
+    if (!storedValues) return {
+        name: "Guest",
+        password: "",
+    };
+    return JSON.parse(storedValues);
+}
+
+
 export default function LogIn() {
+    const [values, setValues] = React.useState<IFormInputValues> (getFormValues);
+
+    useEffect(()=> {
+        localStorage.setItem('FormData', JSON.stringify(values));
+    }, [values]);
+
+    
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+    }
+
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+        setValues((previousValues) => ({
+            ...previousValues, 
+            [event.target.name] : event.target.value,
+        }));
+    }
+
   //* Modal Log In:
   const [show, setShow] = useState(false);
-  const handleClose = () => {
-    setShow(false);
-    
-
-  }
+  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  //* Handle submit & local storage:
-  //* User Name state:
-  const [username, setUsername] = useState("");
-   //* User password state:
-  const [password, setPassword] = useState("");
+//   //* Handle submit & local storage:
+//   //* User Name state:
+//   const [username, setUsername] = useState("");
+//    //* User password state:
+//   const [password, setPassword] = useState("");
 
-  //* Grab data from local storage:
-  useEffect(() => {
-    const data = window.localStorage.getItem('User_Details');
-    console.log('data', data);
-  }, [])
+//   //* Grab data from local storage:
+//   useEffect(() => {
+//     const data = window.localStorage.getItem('User_Details');
+//     console.log('data', data);
+//   }, [])
 
   //* Store data in local storage:
 //   useEffect(()=> {
@@ -31,9 +60,9 @@ export default function LogIn() {
 //         {"user": username, 
 //         "password": password}))
 //   }, [username])
-  const [user, setUser] = useState()
-  const handleSubmit = (e: any): any => {
-    e.preventDefault();
+//   const [user, setUser] = useState()
+//   const handleSubmit = (e: any): any => {
+//     e.preventDefault();
     // let status = false;
     //   useEffect(()=> {
     // window.localStorage.setItem('User_Details', JSON.stringify(
@@ -56,7 +85,7 @@ export default function LogIn() {
     // if (status){
     //     location.href="/game.html";
     //   }
-  };
+//   };
 
 //   if (user) {
 //     return <div>{user.name} is loggged in</div>;
@@ -88,52 +117,55 @@ export default function LogIn() {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="logInName" controlId="exampleForm.ControlInput1">
-              <Form.Label>Your Name</Form.Label>
-              <Form.Control
-                type="text"
-                value={username}
-                autoFocus
-                onChange={({ target }) => setUsername(target.value)}
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Your Password</Form.Label>
-              <Form.Control type="password"
-              value={password}
-              onChange={({ target }) => setPassword(target.value)} 
-              />
-            </Form.Group>
-          </Form>
-          
+                <Form.Group className="logInName" controlId="exampleForm.ControlInput1">
+                <Form.Label>Your Name</Form.Label>
+                <Form.Control
+                    type="text"
+                    name="name"
+                    value={values.name}
+                    autoFocus
+                    onChange={handleChange}
+                />
+                </Form.Group>
+                <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Your Password</Form.Label>
+                <Form.Control 
+                type="password"
+                name="password"
+                value={values.password}
+                onChange={handleChange} 
+                />
+                </Form.Group>
+            </Form>
         </Modal.Body>
-        <Modal.Footer className='justify-content-center'>
-          <Button style={{
-            width: "83px",
-            height: "60px",
-            marginTop: "8px",
-            background: "gray",
-            border: "1px solid black",
-            color: "black",
-            }} onClick={handleClose}>
-            Close
-          </Button>
-          <Button style = {{
-            width: "83px",
-            height: "60px",
-            marginTop: "8px",
-            background: "orange",
-            border: "1px solid black",
-            color: "black",
-            }} 
-            onClick={handleClose}
-            type = "submit">
-            <a style={{color: "black", textDecoration: "none"}} href={'game'} >Log In</a>
-          </Button>
-        </Modal.Footer>
+          
+            
+            <Modal.Footer className='justify-content-center'>
+                <Button style={{
+                    width: "83px",
+                    height: "60px",
+                    marginTop: "8px",
+                    background: "gray",
+                    border: "1px solid black",
+                    color: "black",
+                    }} onClick={handleClose}>
+                    Close
+                </Button>
+                <Button style = {{
+                    width: "83px",
+                    height: "60px",
+                    marginTop: "8px",
+                    background: "orange",
+                    border: "1px solid black",
+                    color: "black",
+                    }} 
+                    onClick={handleClose}
+                    type = "submit">
+                    <a style={{color: "black", textDecoration: "none"}} href={'game'} >Log In</a>
+                </Button>
+            </Modal.Footer>
       </Modal>
     </>
   );
