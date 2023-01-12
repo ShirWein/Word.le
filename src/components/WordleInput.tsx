@@ -31,11 +31,16 @@ const WordleInput: React.FC<Props> = ({
 
     //* Handle KeyUp event:
     const handleKeyUp = (e: React.KeyboardEvent, i: number): void => {
-        let isCurrentGuessFull: boolean = currentGuess.filter((letter: string): string => letter && letter).length === 5 ? true : false;  //* check if there is a letter and return it. 
-        const pattern = /^[a-z]$/i;
+
+        //* Check if row is full:
+        let isCurrentGuessFull: boolean = currentGuess.filter((letter: string): string => letter && letter).length === 5 ? true : false; 
+       
+        //* Valid input:
+        const pattern = /^[A-Za-z]+$/;
         console.log((e.target as HTMLInputElement).value);
         const isValid = pattern.test((e.target as HTMLInputElement).value);
         if (!isValid) {
+            e.preventDefault();
             (e.target as HTMLInputElement).value = "";
         }
         // const lettersRegex = /^[A-Za-z]+$/;
@@ -94,12 +99,11 @@ const WordleInput: React.FC<Props> = ({
                     onChange={({target: {value}}: React.ChangeEvent<HTMLInputElement>): void => {
                         //* update the state:
                         let newCurrentGuess: string[] = currentGuess; 
-                        if (!value.match(/[a-z]/gi)) {
+                        if (!value.match(/^[A-Za-z]+$/)) {
                             newCurrentGuess[i] = "";
                             setCurrentGuess(newCurrentGuess);
                         } else {
                             newCurrentGuess[i] = value;
-                            // alert(newCurrentGuess);
                             setCurrentGuess(newCurrentGuess);
                         }  
                     }}
