@@ -1,4 +1,4 @@
-import React, {MouseEvent, useContext} from "react";
+import React, {MouseEvent, useState} from "react";
 // import { InputContext } from '../context/inputField';
 
 
@@ -64,37 +64,64 @@ import React, {MouseEvent, useContext} from "react";
 // type keyBoardProps={
 //     onClickProp: Function,
 // };
+interface Props {
+    setGuesses: (guesses: string[]) => void;
+    onClick: (e: React.KeyboardEvent | React.MouseEvent, i: number) => void;
+    onSubmit: () => void;
+    guesses: string[];
+    usableWords: string[];
+    solution: string;
+}
 
-function WordleKeyboard():JSX.Element {
+const WordleKeyboard: React.FC<Props> = ({ 
+    setGuesses, 
+    guesses,
+    onClick,
+    onSubmit,
+    usableWords,
+    solution}: Props) :JSX.Element => {
     //* Array of letters:
-    const alphabet: string[] = 'qwertyuiopasdfghjklzxcvbnm'.split('')
+    const alphabet: string[] = 'qwertyuiopasdfghjklzxcvbnm'.split('');
 
-    // const {currentGuess, setCurrentGuess} = useContext(InputContext);
+    const [currentGuess, setCurrentGuess] = useState<string[]>([...Array(5)]);
 
 
     const handleOnClick = (event: MouseEvent<HTMLButtonElement>, i: number): void | string => {
         event.preventDefault();
-        const letter = event.currentTarget.textContent;
+        const letter: string = event.currentTarget.textContent!;
         console.log(letter);
-        if (letter !== 'Enter') {
-            // props.onClickProp(letter);
+        setCurrentGuess(letter[i])!;
+        if (letter === 'Backspace') {
+            
         }
-        // setCurrentGuess(letter)
-        
     }
 
 
     return (
         <div className="keyboardBase">
             {alphabet.map((letter: string, i: number): JSX.Element => (
-                <button className="key" id={letter} key={i} onClick={(event:React.MouseEvent<HTMLButtonElement>)=>handleOnClick(event,i)}>
+                <button className="key"
+                        id={letter} 
+                        key={i} 
+                        onClick={(event:React.MouseEvent<HTMLButtonElement>)=> {
+                            handleOnClick(event,i);
+                            setCurrentGuess(event.currentTarget.textContent);
+                            onSubmit();
+                        }}>
                     {letter}
                 </button>
             ))}
-            <button className="key" id='Enter' style={{width: '90px'}} >
+            <button className="key"
+                    id='Enter' 
+                    style={{width: '90px'}}
+                    >
                     enter
             </button>
-            <button className="key" id='Backspace' style={{width: '150px', marginLeft: "35px"}} >
+            <button className="key" 
+                    id='Backspace' 
+                    style={{width: '150px', marginLeft: "35px"}}
+                    // onClick={(event:React.MouseEvent<HTMLButtonElement>)=>handleOnClick(event,i)}
+                    >
                     Backspace
             </button>
 

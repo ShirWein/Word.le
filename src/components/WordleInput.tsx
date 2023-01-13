@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import WordleKeyboard from './WordleKeyboard';
 
 //* This component creates the input squares:
 
@@ -30,7 +31,7 @@ const WordleInput: React.FC<Props> = ({
     }, []);
 
     //* Handle KeyUp event:
-    const handleKeyUp = (e: React.KeyboardEvent, i: number): void => {
+    const handleKeyUp = (e: React.KeyboardEvent | React.MouseEvent, i: number): void => {
 
         //* Check if row is full:
         let isCurrentGuessFull: boolean = currentGuess.filter((letter: string): string => letter && letter).length === 5 ? true : false; 
@@ -44,7 +45,7 @@ const WordleInput: React.FC<Props> = ({
             (e.target as HTMLInputElement).value = "";
         }
         // const lettersRegex = /^[A-Za-z]+$/;
-        if (e.key === "Backspace") {
+        if ((e as React.KeyboardEvent).key === "Backspace"  || e.currentTarget.textContent === "Backspace") {
             let inputToGoToIndex: number = i-1  >= 0 ? i - 1 : i;
             autoTab(inputToGoToIndex, index); //* no need to move on. 
         } else if (i === 4 && isCurrentGuessFull) {
@@ -114,6 +115,7 @@ const WordleInput: React.FC<Props> = ({
                     required 
                     />
             ))}
+            <WordleKeyboard onClick={handleKeyUp} onSubmit={handleSubmit} setGuesses={setGuesses} guesses={guesses} usableWords={usableWords} solution={solution} />
 
         </div>
     )
