@@ -17,16 +17,18 @@ export function Navbar () {
           <span className="username" style={{marginLeft: "80px", top: "30%", position: "absolute", fontSize: "1rem"}}>
             <strong>Hello {userName}</strong>
           </span>
-          <a className="logout" 
-            style={{marginLeft: "92px", top: "50%", position: "absolute"}} 
-            href="/"
-            onClick={()=> {
-              window.localStorage.clear();
-            }}
-          >
-            Log Out
-          </a>
-        
+          {/* //* If there is user create a Log out button: */}
+            {userName !== 'Guest' ?
+            <a className="logout" 
+              style={{marginLeft: "92px", top: "50%", position: "absolute", textDecoration: "none"}} 
+              href="/"
+              onClick={()=> {
+                window.localStorage.clear();
+              }}
+            >
+              Log Out
+            </a>
+          : null}
         <div className="container-fluid d-flex justify-content-between">
           <ModalPop/>
           <a className="navbar-brand fs-2" style={{marginLeft: "22px"}} href="/"><strong>🆆🤓🆁 🅳 🅻 🅴</strong></a>

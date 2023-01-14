@@ -88,6 +88,7 @@ const WordleInput: React.FC<Props> = ({
         }
     
     return (
+        
         <div>
             {/* //* Loop over the array of strings: */}
             {currentGuess.map(
@@ -115,10 +116,10 @@ const WordleInput: React.FC<Props> = ({
                     required 
                     />
             ))}
-            <WordleKeyboard onClick={handleKeyUp} onSubmit={handleSubmit} setGuesses={setGuesses} guesses={guesses} usableWords={usableWords} solution={solution} />
 
+            <WordleKeyboard index={index} autoTab={autoTab} onClick={handleKeyUp} onSubmit={handleSubmit} setGuesses={setGuesses} guesses={guesses} usableWords={usableWords} solution={solution} />
         </div>
-    )
+            )
 }
 
 export default WordleInput; 
