@@ -2,7 +2,6 @@ import React, {useState, useEffect, useRef} from "react";
 import WordleInput from "./WordleInput";
 import WordleKeyboard from "./WordleKeyboard";
 
-
 const WordleBoard: React.FC = () : JSX.Element => {
     //* State for all guesses: 
     const [guesses, setGuess] = useState<string[]>([...Array(6)])
@@ -17,24 +16,17 @@ const WordleBoard: React.FC = () : JSX.Element => {
         console.log(fiveLetterWords[randomNumber])
     }, []) 
 
-    const audioRef = useRef<HTMLAudioElement | null>(null);
-
     useEffect((): void => {
         let hasWon: boolean = guesses.filter((guess: string): boolean => guess == solution).length > 0 ? true : false; 
         let realGuesses: string[] = guesses.filter((guess: string): string => guess && guess);
-        function handleWin() {
-            if(audioRef.current){
-                audioRef.current.play();
-            }
-        }
         if (hasWon) {
-            let audio = new Audio('../../public/claps-44774.mp3');
-            audio.play();
-            // <audio ref={audioRef} src="claps-44774.mp3"></audio>
-            // handleWin();
+            // @ts-ignore
+            document.getElementById('clap').play();
             alert('You guess it!');
             window.location.reload() //* return everything to initial state.  
         } else if (realGuesses.length >= 6) {
+            // @ts-ignore
+            document.getElementById('loser').play();
             alert('You lost!');
             window.location.reload();
         }
