@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
 import WordleInput from "./WordleInput";
-import WordleKeyboard from "./WordleKeyboard";
+import WordleKeyboard from './WordleKeyboard';
 
 const WordleBoard: React.FC = () : JSX.Element => {
     //* State for all guesses: 
@@ -13,7 +13,7 @@ const WordleBoard: React.FC = () : JSX.Element => {
         setUsableWords(fiveLetterWords);
         let randomNumber: number = Math.floor(Math.random() * fiveLetterWords.length-1) //* random number 0 - length of the array of words. 
         setSolution(fiveLetterWords[randomNumber]) //* set the solution randomly.  
-        console.log(fiveLetterWords[randomNumber])
+        console.log('If you want to cheat this is    the word:', fiveLetterWords[randomNumber])
     }, []) 
 
     useEffect((): void => {
@@ -37,7 +37,10 @@ const WordleBoard: React.FC = () : JSX.Element => {
             {guesses.map(
                 (guess: string, i: number): JSX.Element => (
                 <WordleInput index={i} key={i}  setGuesses={setGuess} guesses={guesses} usableWords={usableWords} solution={solution}  />
-            ))}           
+            ))} 
+        
+        <WordleKeyboard />
+          
         </div>
     )
 }

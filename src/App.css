@@ -6,7 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #E0F6EE
+  background-color: #E0F6EE;
 }
 
 
@@ -19,12 +19,12 @@ code {
     monospace;
 }
 
-
 .typewriter {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 200px;
+  padding-top: 200px;
+  
 }
 
 .typewriter h1 {
@@ -78,13 +78,39 @@ code {
   box-shadow: 0px 0px 2px 2px rgb(0,0,0);
 }
 
+
+
 .App {
   text-align: center;
-  height: 200vh;
-  padding: 40px;
-  background-color: #E0F6EE;
-
+  background-color:  #E0F6EE;
+  width: 100vw;
+  height: 100vh;
+  /* display: flex; */
+  color: black;
 }
+
+body {
+  padding: 0%;
+  margin: 0;
+}
+
+
+div.welcome-buttons {    
+     display: flex;
+     position: relative;
+     padding-top: 220px;
+}
+
+
+.game {
+  width: 100vw;
+  height: calc(100vh - 170px);
+  display: flex;
+  align-items: center;
+  padding-top: 50px;
+  flex-direction: column;
+}
+
 
 input[type="text"]:not(.form-control){
   width: 60px;
@@ -139,6 +165,7 @@ button.play2 {
   text-align: center;
   height: 60px;
   margin-top: 8px;
+  position: absolute;
 }
 
 
@@ -200,19 +227,14 @@ button.play2 {
 } */
 
 
-
-
-
 .keyboardBase {
-  position: absolute;
-  left: 25%;
-  bottom: -15%;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(20, 30px);
   grid-template-rows: repeat(3, 60px);
   grid-gap: 5px;
   justify-content: center;
+  margin-top: 20px;
 }
 
 

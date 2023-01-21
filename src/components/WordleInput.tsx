@@ -9,6 +9,7 @@ interface Props {
     guesses: string[];
     usableWords: string[];
     solution: string;
+   
 }
 
 const WordleInput: React.FC<Props> = ({
@@ -20,6 +21,8 @@ const WordleInput: React.FC<Props> = ({
     //* using state to "store" letters in an array of strings. 
     //* Each string in the array of 5 represent a letter guess   
     const [currentGuess, setCurrentGuess] = useState<string[]>([...Array(5)]);
+
+
     
     //* Focus: 
     const autoTab = (InputIndex: number, guessIndex: number): void => {
@@ -106,18 +109,17 @@ const WordleInput: React.FC<Props> = ({
                             setCurrentGuess(newCurrentGuess);
                         } else {
                             newCurrentGuess[i] = value;
+                            console.log('val', value)
                             setCurrentGuess(newCurrentGuess);
                         }  
                     }}
-                    onKeyUp={(e: React.KeyboardEvent)=> handleKeyUp(e, i)}
+                    onKeyUp={(e: React.KeyboardEvent | React.MouseEvent)=> handleKeyUp(e, i)}
                     maxLength={1} 
                     minLength={1}
                     pattern={'/^[a-zA-Z]*$/'}
                     required 
                     />
             ))}
-
-            <WordleKeyboard index={index} autoTab={autoTab} onClick={handleKeyUp} onSubmit={handleSubmit} setGuesses={setGuesses} guesses={guesses} usableWords={usableWords} solution={solution} />
         </div>
             )
 }

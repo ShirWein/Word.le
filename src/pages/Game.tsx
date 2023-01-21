@@ -10,11 +10,10 @@ export function Game () {
     
 
     return (
-        <>
-            {/* <MyGlobalContext.Provider value = {{currentGuess, setCurrentGuess}}> */}
+        <div className='game'>
                 <Navbar/>
                     <WordleBoard />
-            {/* </MyGlobalContext.Provider> */}
-        </>
+        </div>
+        
     )
 }

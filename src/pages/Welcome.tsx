@@ -7,10 +7,10 @@ export function Welcome () {
             <div className="typewriter">
                 <h1>{text}</h1>
             </div>
-            <br/>
-            <br/>
-            <button className="play2"><a className='play' href={'game'} >Start Play</a></button>
-            <LogIn/>
+            <div className="welcome-buttons">
+                <button className="play2"><a className='play' href={'game'} >Start Play</a></button>
+                <LogIn/>
+            </div>
        </>
     )
 }   
