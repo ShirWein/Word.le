@@ -66,7 +66,7 @@ const WordleInput: React.FC<Props> = ({
     //* Handle submit event - check letter position: 
     const handleSubmit = (): void => {
         let word: string = currentGuess.join("") //* join the letters to make a word. 
-        if (usableWords.includes(word) && !guesses.includes(word)) {
+        // if (usableWords.includes(word) && !guesses.includes(word)) {
             currentGuess.map((letter: string, i: number): void => {
                 let input: HTMLElement | null = document.getElementById(`${i}${index}`)
                 let letterElement: HTMLElement | null = document.getElementById(letter)
@@ -85,8 +85,8 @@ const WordleInput: React.FC<Props> = ({
                 newGuesses[index] = word;
                 setGuesses(newGuesses);
             })
-        } else {
-                alert('Not a word')}
+        // } else {
+        //         alert('Not a word')}
 
         }
     
