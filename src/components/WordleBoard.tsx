@@ -21,10 +21,10 @@ const WordleBoard: React.FC = () : JSX.Element => {
     //     let randomNumber: number = Math.floor(Math.random() * fiveLetterWords.length-1) //* random number 0 - length of the array of words. 
     //     setSolution(fiveLetterWords[randomNumber]) //* set the solution randomly.  
     //     console.log('If you want to cheat this is the word:', fiveLetterWords[randomNumber])
-    // }, []) 
-
+    // }, [])
+    
     useEffect((): void => {
-        let hasWon: boolean = guesses.filter((guess: string): boolean => guess == solution).length > 0 ? true : false; 
+        let hasWon: boolean = guesses.filter((guess: string): boolean => guess === solution).length > 0 ? true : false; 
         let realGuesses: string[] = guesses.filter((guess: string): string => guess && guess);
         if (hasWon) {
             // @ts-ignore

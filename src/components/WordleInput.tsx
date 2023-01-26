@@ -65,7 +65,18 @@ const WordleInput: React.FC<Props> = ({
 
     //* Handle submit event - check letter position: 
     const handleSubmit = (): void => {
-        let word: string = currentGuess.join("") //* join the letters to make a word. 
+        let word: string = currentGuess.join("") //* join the letters to make a word.
+         fetch('http://localhost:3333/game/check-guess', {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(word)
+        }).then(res => res.json()).then(res=> {
+            
+        })
+ 
+        console.log('word', word);
         // if (usableWords.includes(word) && !guesses.includes(word)) {
             currentGuess.map((letter: string, i: number): void => {
                 let input: HTMLElement | null = document.getElementById(`${i}${index}`)
