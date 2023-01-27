@@ -22,7 +22,7 @@ const WordleInput: React.FC<Props> = ({
     //* Each string in the array of 5 represent a letter guess   
     const [currentGuess, setCurrentGuess] = useState<string[]>([...Array(5)]);
 
-
+ 
     
     //* Focus: 
     const autoTab = (InputIndex: number, guessIndex: number): void => {

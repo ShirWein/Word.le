@@ -79,103 +79,127 @@ import WordleInput from "./WordleInput";
 //     index: number;
 // }
 
-const WordleKeyboard: React.FC = () :JSX.Element => {
+// const WordleKeyboard: React.FC = () :JSX.Element => {
         
-    //* Array of letters:
-    const alphabet: string[] = 'qwertyuiopasdfghjklzxcvbnm'.split('');
+//     //* Array of letters:
+//     const alphabet: string[] = 'qwertyuiopasdfghjklzxcvbnm'.split('');
 
-    const [currentGuess, setCurrentGuess] = useState<string[]>([...Array(5)]);
+//     const [currentGuess, setCurrentGuess] = useState<string[]>([...Array(5)]);
 
 
-    // const handleOnClick = (e: MouseEvent<HTMLButtonElement>, i: number): void | string => {
-    //     // event.preventDefault();
-    //     // const letter: string = event.currentTarget.textContent!;
-    //     // console.log(letter);
-    //     let isCurrentGuessFull: boolean = currentGuess.filter((letter: string): string => letter && letter).length === 5 ? true : false; 
+//     // const handleOnClick = (e: MouseEvent<HTMLButtonElement>, i: number): void | string => {
+//     //     // event.preventDefault();
+//     //     // const letter: string = event.currentTarget.textContent!;
+//     //     // console.log(letter);
+//     //     let isCurrentGuessFull: boolean = currentGuess.filter((letter: string): string => letter && letter).length === 5 ? true : false; 
        
-    //     //* Valid input:
-    //     const pattern = /^[A-Za-z]+$/;
-    //     console.log((e.target as HTMLInputElement).value);
-    //     const isValid = pattern.test((e.target as HTMLInputElement).value);
-    //     if (!isValid) {
-    //         e.preventDefault();
-    //         (e.target as HTMLInputElement).value = "";
-    //     }
-    //     // const lettersRegex = /^[A-Za-z]+$/;
-    //     if (e.currentTarget.textContent === "Backspace") {
-    //         let inputToGoToIndex: number = i-1  >= 0 ? i - 1 : i;
-    //         autoTab(inputToGoToIndex, index); //* no need to move on. 
-    //     } else if (i === 4 && isCurrentGuessFull) {
-    //             console.log('Done');
-    //             onSubmit()
-    //             autoTab(0, index+1) //* move to the next row. 
-    //         } 
-    //     else if (isValid) {
-    //             let inputToGoToIndex: number = i + 1 
-    //             autoTab(inputToGoToIndex, index); 
-    //         } 
-    //     }
-        // setCurrentGuess(letter);
-        // if (letter === 'Backspace') {
+//     //     //* Valid input:
+//     //     const pattern = /^[A-Za-z]+$/;
+//     //     console.log((e.target as HTMLInputElement).value);
+//     //     const isValid = pattern.test((e.target as HTMLInputElement).value);
+//     //     if (!isValid) {
+//     //         e.preventDefault();
+//     //         (e.target as HTMLInputElement).value = "";
+//     //     }
+//     //     // const lettersRegex = /^[A-Za-z]+$/;
+//     //     if (e.currentTarget.textContent === "Backspace") {
+//     //         let inputToGoToIndex: number = i-1  >= 0 ? i - 1 : i;
+//     //         autoTab(inputToGoToIndex, index); //* no need to move on. 
+//     //     } else if (i === 4 && isCurrentGuessFull) {
+//     //             console.log('Done');
+//     //             onSubmit()
+//     //             autoTab(0, index+1) //* move to the next row. 
+//     //         } 
+//     //     else if (isValid) {
+//     //             let inputToGoToIndex: number = i + 1 
+//     //             autoTab(inputToGoToIndex, index); 
+//     //         } 
+//     //     }
+//         // setCurrentGuess(letter);
+//         // if (letter === 'Backspace') {
             
-        // }
+//         // }
     
 
-    const [state, setstate] = useState({data:""});
-    const letterClicked = (event:React.MouseEvent<HTMLButtonElement>) => {  
-        console.log(event.currentTarget.textContent)
-        setstate({data: event.currentTarget.textContent!}); 
-       };
+//     const [state, setstate] = useState({data:""});
+//     const letterClicked = (event:React.MouseEvent<HTMLButtonElement>) => {  
+//         console.log(event.currentTarget.textContent)
+//         setstate({data: event.currentTarget.textContent!}); 
+//        };
+  
+//     return (
+    
+//         <div className="keyboardBase">
+//             {alphabet.map((letter: string, i: number): JSX.Element => (
+//                 <button className="key"
+//                         id={letter} 
+//                         key={i} 
+//                         value={alphabet[i]}
+//                         onClick={letterClicked}
+//                         // onClick={()=> { 
+//                         //     // console.log(event.currentTarget.textContent);
+//                         //     // let letterVal = event.currentTarget.textContent;
+//                         //     // console.log('lv', letterVal);
+//                         // }}
+
+//                         //         //* update the state:
+//                         //         let newCurrentGuess: string[] = currentGuess; 
+                                
+//                         //         let value = event.currentTarget.textContent;
+//                         //         newCurrentGuess[i] = value!;
+//                         //         setCurrentGuess(newCurrentGuess);
+                                 
+//                         //         handleOnClick(event,i);
+//                         //     // // setCurrentGuess(event.currentTarget.textContent);
+//                         //         // onSubmit();
+//                         >
+//                     {letter}
+//                 </button>
+//             ))}
+//             <button className="key"
+//                     id='Enter' 
+//                     style={{width: '120px'}}
+//                     >
+//                     enter
+//             </button>
+//             <button className="key" 
+//                     id='Backspace' 
+//                     style={{width: '140px', marginLeft: "60px"}}
+//                     // onClick={(event:React.MouseEvent<HTMLButtonElement>)=>handleOnClick(event,i)}
+//                     >
+//                     Backspace
+//             </button>
+
+//         </div>
+        
+//         )
+//     }
+
+// export default WordleKeyboard; 
+
+
+
+const WordleKeyboard = ({onLetterClick}: any) => {
+    const alphabet: string[] = 'qwertyuiopasdfghjklzxcvbnm'.split('');
+  
+    // Extract the letter and pass it to the provided callback
+    const extractValueFromFromEvent = (mouseEvent: React.MouseEvent<HTMLButtonElement>) => {
+      onLetterClick(mouseEvent.currentTarget.textContent);
+    };
   
     return (
-    
         <div className="keyboardBase">
-            {alphabet.map((letter: string, i: number): JSX.Element => (
-                <button className="key"
-                        id={letter} 
-                        key={i} 
-                        value={alphabet[i]}
-                        onClick={letterClicked}
-                        // onClick={()=> { 
-                        //     // console.log(event.currentTarget.textContent);
-                        //     // let letterVal = event.currentTarget.textContent;
-                        //     // console.log('lv', letterVal);
-                        // }}
-
-                        //         //* update the state:
-                        //         let newCurrentGuess: string[] = currentGuess; 
-                                
-                        //         let value = event.currentTarget.textContent;
-                        //         newCurrentGuess[i] = value!;
-                        //         setCurrentGuess(newCurrentGuess);
-                                 
-                        //         handleOnClick(event,i);
-                        //     // // setCurrentGuess(event.currentTarget.textContent);
-                        //         // onSubmit();
-                        >
-                    {letter}
-                </button>
-            ))}
-            <button className="key"
-                    id='Enter' 
-                    style={{width: '120px'}}
-                    >
-                    enter
-            </button>
-            <button className="key" 
-                    id='Backspace' 
-                    style={{width: '140px', marginLeft: "60px"}}
-                    // onClick={(event:React.MouseEvent<HTMLButtonElement>)=>handleOnClick(event,i)}
-                    >
-                    Backspace
-            </button>
-
+          {alphabet.map((letter: string) => (
+              <button className="key"
+                      key={letter}
+                      onClick={extractValueFromFromEvent}>{letter}
+              </button>
+          ))}
         </div>
-        
-        )
-    }
-
-export default WordleKeyboard; 
+    )
+  }
+  
+  export default WordleKeyboard;
 
 
 

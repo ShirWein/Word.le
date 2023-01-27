@@ -2,9 +2,13 @@
     "cSpell.words": [
         "Backsapce",
         "Darkmode",
+        "qwertyuiopasdfghjklzxcvbnm",
         "rgba",
         "Roboto",
         "Segoe",
         "Wordle"
+    ],
+    "cSpell.ignoreWords": [
+        "setstate"
     ]
 }
