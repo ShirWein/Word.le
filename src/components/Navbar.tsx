@@ -1,4 +1,3 @@
-import React from "react";
 import ModalPop from "./Modal";
 
 export function Navbar () {
@@ -7,7 +6,6 @@ export function Navbar () {
   if (userName == "") {
     userName = 'Guest'
   }
-  console.log(userName);
 
   return (
 
@@ -17,7 +15,7 @@ export function Navbar () {
           <span className="username" style={{marginLeft: "80px", top: "30%", position: "absolute", fontSize: "1rem"}}>
             <strong>Hello {userName}</strong>
           </span>
-          {/* //* If there is user create a Log out button: */}
+           {/* If there is user create a Log out button: */}
             {userName !== 'Guest' ?
             <a className="logout" 
               style={{marginLeft: "92px", top: "50%", position: "absolute", textDecoration: "none"}} 
@@ -45,9 +43,6 @@ export function Navbar () {
                 <li className="nav-item">
                   <a className="nav-link active"  href="/">Home</a>
                 </li>
-                {/* <li className="nav-item">
-                  <a className="nav-link" href="#">Sign in</a>
-                </li> */}
               </ul>
             </div>
           </div>

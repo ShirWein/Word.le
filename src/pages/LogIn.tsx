@@ -42,55 +42,6 @@ export default function LogIn() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-//   //* Handle submit & local storage:
-//   //* User Name state:
-//   const [username, setUsername] = useState("");
-//    //* User password state:
-//   const [password, setPassword] = useState("");
-
-//   //* Grab data from local storage:
-//   useEffect(() => {
-//     const data = window.localStorage.getItem('User_Details');
-//     console.log('data', data);
-//   }, [])
-
-  //* Store data in local storage:
-//   useEffect(()=> {
-//     window.localStorage.setItem('User_Details', JSON.stringify(
-//         {"user": username, 
-//         "password": password}))
-//   }, [username])
-//   const [user, setUser] = useState()
-//   const handleSubmit = (e: any): any => {
-//     e.preventDefault();
-    // let status = false;
-    //   useEffect(()=> {
-    // window.localStorage.setItem('User_Details', JSON.stringify(
-    //     {"user": username, 
-    //     "password": password}))
-    // }, [username])
-    // // const user = { username, password };
-    // // window.localStorage.setItem('User_Details', JSON.stringify(user));
-    // // setUser(data);
-    // // console.log(data)
-    // //send the username and password to the server
-    // // const response = await axios.post(
-    // //   "http://blogservice.herokuapp.com/api/login",
-    // //   user);
-    // // set the state of the user
-    // // setUser(response.data)
-    // // store the user in localStorage
-    // // localStorage.setItem('user', response.data)
-    // // console.log(response.data)
-    // if (status){
-    //     location.href="/game.html";
-    //   }
-//   };
-
-//   if (user) {
-//     return <div>{user.name} is loggged in</div>;
-//   }
-
   return (
     <>
       <Button className='play play2' style={{
