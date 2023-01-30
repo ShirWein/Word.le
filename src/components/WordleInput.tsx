@@ -67,13 +67,15 @@ const WordleInput: React.FC<Props> = ({
                 data.map((letter: string, i: number): void => {
                     console.log('letter', letter);
                 let input: HTMLElement | null = document.getElementById(`${i}${index}`)
-                let letterElement: HTMLElement | null = document.getElementById(letter)
+                let letterElement: HTMLElement | null = document.getElementById(`${i}`);
+                console.log('letterElement', letterElement);
                 if (letter) {  //* if letter is in the right position.  
                     if(input) input.style.background = 'green'
                     if (letterElement) letterElement.style.background = 'green'    
                 } else if (letter === null) {
                     if(input) input.style.background = 'gray'
-                    if (letterElement) letterElement.style.background = 'gray'
+                    //@ts-ignore
+                    if (letterElement === null) letterElement.style.background = 'gray'
                 } else {
                     if (input) input.style.background = 'yellow'
                     if (letterElement) letterElement.style.background = 'yellow'

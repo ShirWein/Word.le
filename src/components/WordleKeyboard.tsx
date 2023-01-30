@@ -9,7 +9,7 @@ const WordleKeyboard: React.FC = () :JSX.Element => {
         <div className="keyboardBase">
             {alphabet.map((letter: string, i: number): JSX.Element => (
                 <button className="key"
-                        id={letter} 
+                        id={String(i)} 
                         key={i} 
                         value={alphabet[i]}
                         >
